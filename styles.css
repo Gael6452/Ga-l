@@ -178,6 +178,75 @@ nav a:focus-visible { color: var(--text); }
   opacity: 0.9;
 }
 
+/* ---------- Slogan ---------- */
+.slogan {
+  margin: 8px 0 16px;
+  font-size: clamp(1.05rem, 1.4vw + 0.7rem, 1.4rem);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent-2);
+  letter-spacing: 0.01em;
+}
+.slogan-langs {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.slogan-langs summary {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: var(--muted);
+  list-style: none;
+}
+.slogan-langs summary::-webkit-details-marker { display: none; }
+.slogan-langs summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.15s;
+}
+.slogan-langs[open] summary::before { transform: rotate(90deg); }
+.slogan-langs summary:hover,
+.slogan-langs summary:focus-visible { color: var(--text); }
+.slogan-langs ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 6px 18px;
+}
+.slogan-langs li {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lang-tag {
+  display: inline-block;
+  min-width: 28px;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.slogan-langs [dir="rtl"] { text-align: right; }
+@media (prefers-reduced-motion: reduce) {
+  .slogan-langs summary::before { transition: none; }
+}
+
 /* ---------- Cards ---------- */
 .card {
   background: var(--panel);
