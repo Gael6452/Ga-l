@@ -1,3 +1,10 @@
+// SECURITY_RUBRIC — comment est calculé le score affiché sur chaque outil
+//   5/5  Open-source ET exécutable en local — aucune donnée ne sort de votre machine.
+//   4/5  Hébergé en UE (RGPD), ou pas d'entraînement sur vos données + politique vérifiable.
+//   3/5  Service hébergé hors UE avec politique correcte (opt-out d'entraînement, certifs).
+//   2/5  Collecte large ou éditeur peu transparent — usage perso seulement.
+//   1/5  Risques sérieux (déconseillé en pro).
+
 (function () {
   const jobsEl   = document.getElementById("jobs");
   const searchEl = document.getElementById("search");
@@ -11,6 +18,7 @@
   const fEU      = document.getElementById("f-eu");
   const fOffline = document.getElementById("f-offline");
   const fHidden  = document.getElementById("f-hidden");
+  const fSecure  = document.getElementById("f-secure");
 
   let selectedJob = null;
   let jobFilter = "";
@@ -51,6 +59,7 @@
     if (fEU.checked      && !(t.flags || []).includes("eu"))      return false;
     if (fOffline.checked && !(t.flags || []).includes("offline")) return false;
     if (fHidden.checked  && !(t.flags || []).includes("hidden"))  return false;
+    if (fSecure.checked  && (t.security || 0) < 4)                return false;
     return true;
   }
 
@@ -78,9 +87,10 @@
     }
     emptyEl.classList.add("hidden");
 
-    // tri : pépites & gratuits d'abord
+    // tri : sécurité d'abord, puis pépites/gratuits
     matches.sort((a, b) => {
       const score = t => (
+        (t.security || 0) * 3 +
         ((t.flags || []).includes("hidden")  ? 2 : 0) +
         ((t.flags || []).includes("private") ? 1 : 0) +
         (t.price === "free"     ? 2 : 0) +
@@ -94,9 +104,18 @@
     }
   }
 
+  function securityClass(s) {
+    if (s >= 5) return "sec-5";
+    if (s >= 4) return "sec-4";
+    if (s >= 3) return "sec-3";
+    if (s >= 2) return "sec-2";
+    return "sec-1";
+  }
+
   function card(t) {
     const p = priceLabel(t.price);
     const flags = t.flags || [];
+    const sec = t.security || 3;
 
     const tagEls = [];
     if (flags.includes("hidden"))  tagEls.push(['Pépite',          'hidden-gem']);
@@ -111,6 +130,32 @@
     h.innerHTML = `<span></span><span class="price ${p.cls}">${p.txt}</span>`;
     h.firstElementChild.textContent = t.name;
     el.appendChild(h);
+
+    // Score de sécurité
+    const secRow = document.createElement("div");
+    secRow.className = "sec-row";
+    const badge = document.createElement("span");
+    badge.className = "sec-badge " + securityClass(sec);
+    badge.title = t.secNote || "";
+    badge.innerHTML = `<span class="shield" aria-hidden="true">🛡</span><span>Sécurité ${sec}/5</span>`;
+    secRow.appendChild(badge);
+    const dots = document.createElement("span");
+    dots.className = "sec-dots";
+    dots.setAttribute("aria-label", `Score de sécurité ${sec} sur 5`);
+    for (let i = 1; i <= 5; i++) {
+      const d = document.createElement("span");
+      d.className = "dot" + (i <= sec ? " on" : "");
+      dots.appendChild(d);
+    }
+    secRow.appendChild(dots);
+    el.appendChild(secRow);
+
+    if (t.secNote) {
+      const note = document.createElement("p");
+      note.className = "sec-note";
+      note.textContent = t.secNote;
+      el.appendChild(note);
+    }
 
     const desc = document.createElement("p");
     desc.textContent = t.why;

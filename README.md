@@ -1,4 +1,4 @@
-# FindMyAI
+# TrioInclusion app
 
 Petite application web qui aide à trouver la meilleure IA **gratuite, sûre et peu chère** selon votre métier.
 
@@ -30,6 +30,8 @@ Modifiez `data.js`. Chaque outil a la forme :
   flags: ["private", "eu", "offline", "hidden"],  // au choix
   jobs: ["dev", "writer", …],             // ids depuis JOBS
   why:  "Phrase courte expliquant l'intérêt",
+  security: 4,                            // 1 à 5, voir SECURITY_RUBRIC dans app.js
+  secNote:  "Pourquoi ce score (1 phrase)",
 }
 ```
 

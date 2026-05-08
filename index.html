@@ -3,16 +3,45 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FindMyAI — Trouvez la meilleure IA pour votre métier</title>
+    <title>TrioInclusion app — Trouvez la meilleure IA pour votre métier</title>
     <meta name="description" content="Trouvez la meilleure IA gratuite, sûre et peu chère selon votre métier. Recommandations indépendantes, axées vie privée." />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="hero">
       <div class="container">
-        <a href="#" class="brand">
-          <span class="logo">◆</span>
-          <span>FindMyAI</span>
+        <a href="#" class="brand" aria-label="TrioInclusion app">
+          <span class="logo" aria-hidden="true">
+            <svg viewBox="0 0 80 32" width="64" height="26" role="img" focusable="false">
+              <defs>
+                <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#7c5cff"/>
+                  <stop offset="100%" stop-color="#38d4c5"/>
+                </linearGradient>
+              </defs>
+              <!-- Cerveau schématisé : lobe avec sillons -->
+              <g fill="none" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 7 C 11 7, 6 11, 6 16 C 6 21, 11 25, 18 25 L 20 25 L 20 7 Z"/>
+                <path d="M11 12 C 13 13, 14 14, 14 16"/>
+                <path d="M10 19 C 12 18, 14 18, 15 20"/>
+                <path d="M16 9 L 16 23"/>
+              </g>
+              <!-- Flèche cerveau → IA -->
+              <g stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                <line x1="24" y1="16" x2="46" y2="16"/>
+                <polyline points="42,12 46,16 42,20"/>
+              </g>
+              <!-- Boîte IA -->
+              <g>
+                <rect x="50" y="6" width="26" height="20" rx="5" ry="5"
+                      fill="none" stroke="url(#logoGrad)" stroke-width="2"/>
+                <text x="63" y="21" text-anchor="middle"
+                      font-family="-apple-system, Segoe UI, Inter, sans-serif"
+                      font-size="11" font-weight="800" fill="url(#logoGrad)">IA</text>
+              </g>
+            </svg>
+          </span>
+          <span>TrioInclusion</span>
         </a>
         <nav>
           <a href="#tools">Outils</a>
@@ -67,6 +96,10 @@
             <input type="checkbox" id="f-hidden" />
             <span>Pépites peu connues</span>
           </label>
+          <label class="toggle">
+            <input type="checkbox" id="f-secure" />
+            <span>Score sécurité ≥ 4/5</span>
+          </label>
         </div>
       </section>
 
@@ -89,6 +122,15 @@
           <li><strong>Utile</strong> — testé pour le métier ciblé, pas juste un chatbot générique.</li>
           <li><strong>Pépites</strong> — on inclut volontairement des alternatives moins connues que ChatGPT.</li>
         </ul>
+
+        <h2 style="margin-top:18px">Le score de sécurité</h2>
+        <ul class="check sec-rubric">
+          <li><span class="sec-badge sec-5"><span class="shield">🛡</span><span>5/5</span></span> Open-source <em>et</em> exécutable en local — vos données ne sortent jamais.</li>
+          <li><span class="sec-badge sec-4"><span class="shield">🛡</span><span>4/5</span></span> Hébergé en UE (RGPD), ou pas d'entraînement sur vos données + politique vérifiable.</li>
+          <li><span class="sec-badge sec-3"><span class="shield">🛡</span><span>3/5</span></span> Service hors UE avec politique correcte (opt-out, certifications).</li>
+          <li><span class="sec-badge sec-2"><span class="shield">🛡</span><span>2/5</span></span> Collecte large ou éditeur peu transparent — usage perso seulement.</li>
+          <li><span class="sec-badge sec-1"><span class="shield">🛡</span><span>1/5</span></span> Risques sérieux — déconseillé en pro.</li>
+        </ul>
         <p class="muted small">
           ⚠️ Pour la santé, le droit ou la finance, l'IA aide mais ne remplace
           jamais un professionnel. Vérifiez toujours les sources.
@@ -98,7 +140,7 @@
 
     <footer>
       <div class="container">
-        <span>FindMyAI · fait avec soin · pas d'affiliation, pas de tracking</span>
+        <span>TrioInclusion app · fait avec soin · pas d'affiliation, pas de tracking</span>
       </div>
     </footer>
 

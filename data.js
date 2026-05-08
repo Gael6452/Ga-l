@@ -8,6 +8,8 @@
 //    - 'hidden'   : alternative peu connue (pas ChatGPT/Gemini/Copilot)
 //  jobs: liste de métiers concernés
 //  why : pourquoi on le recommande pour ce profil
+//  security: score de sécurité 1–5 (voir SECURITY_RUBRIC dans app.js)
+//  secNote : justification courte du score
 
 window.JOBS = [
   { id: "dev",        label: "Développeur·euse" },
@@ -41,6 +43,8 @@ window.TOOLS = [
     flags: ["eu", "hidden"],
     jobs: ["writer", "marketer", "teacher", "student", "lawyer", "hr", "support", "sales", "pm", "finance", "artisan"],
     why: "Assistant français, hébergé en Europe, gratuit et rapide.",
+    security: 4,
+    secNote: "Hébergement UE, modèles à poids ouverts, pas d'entraînement sur vos prompts par défaut.",
   },
   {
     name: "HuggingChat",
@@ -49,6 +53,8 @@ window.TOOLS = [
     flags: ["private", "hidden"],
     jobs: ["writer", "student", "teacher", "researcher", "marketer", "support", "hr", "pm"],
     why: "Modèles open-source, sans collecte abusive, plusieurs IA au choix.",
+    security: 4,
+    secNote: "Modèles open-source, conversations non utilisées pour l'entraînement.",
   },
   {
     name: "Perplexity",
@@ -56,6 +62,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["researcher", "student", "marketer", "sales", "pm", "writer"],
     why: "Réponses sourcées avec citations — idéal pour vérifier l'info.",
+    security: 3,
+    secNote: "Politique claire, opt-out d'entraînement disponible — hébergé US.",
   },
   {
     name: "Ollama (local)",
@@ -64,6 +72,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["dev", "researcher", "writer", "lawyer", "doctor", "finance"],
     why: "Tourne 100 % en local sur votre machine — vos données ne sortent jamais.",
+    security: 5,
+    secNote: "100 % local, code open-source, aucune télémétrie réseau requise.",
   },
   {
     name: "NotebookLM",
@@ -71,6 +81,8 @@ window.TOOLS = [
     price: "free",
     jobs: ["student", "teacher", "researcher", "lawyer", "writer", "pm"],
     why: "Téléchargez vos PDF/notes, l'IA répond en citant vos documents.",
+    security: 3,
+    secNote: "Google s'engage à ne pas entraîner sur vos documents — mais hébergé US.",
   },
 
   // ---------- Développement ----------
@@ -80,6 +92,8 @@ window.TOOLS = [
     price: "free",
     jobs: ["dev"],
     why: "Auto-complétion gratuite illimitée pour tous les IDE.",
+    security: 3,
+    secNote: "Pas d'entraînement sur le code des comptes gratuits, mais service hébergé.",
   },
   {
     name: "Continue.dev",
@@ -88,6 +102,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["dev"],
     why: "Extension VS Code open-source, branchable sur un modèle local.",
+    security: 5,
+    secNote: "Open-source, peut être branché sur Ollama pour rester 100 % local.",
   },
   {
     name: "Tabby",
@@ -96,6 +112,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["dev"],
     why: "Copilote auto-hébergeable — souverain et gratuit.",
+    security: 5,
+    secNote: "Open-source, auto-hébergé : votre code ne quitte jamais votre serveur.",
   },
   {
     name: "Phind",
@@ -104,6 +122,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["dev"],
     why: "Moteur de recherche dédié au code, avec sources.",
+    security: 3,
+    secNote: "Hébergé US, politique standard — réponses sourcées vérifiables.",
   },
   {
     name: "Cursor",
@@ -111,6 +131,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["dev"],
     why: "Éditeur basé VS Code avec IA intégrée — palier gratuit utile.",
+    security: 3,
+    secNote: "Mode Privacy disponible (aucun stockage), mais désactivé par défaut.",
   },
 
   // ---------- Design / Image ----------
@@ -120,6 +142,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["design", "marketer"],
     why: "Génération et retouche d'image en temps réel — très intuitif.",
+    security: 3,
+    secNote: "Politique standard, vos images peuvent servir à améliorer le service.",
   },
   {
     name: "Leonardo.AI",
@@ -127,6 +151,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["design", "marketer", "video"],
     why: "150 crédits gratuits/jour, contrôle fin du style.",
+    security: 3,
+    secNote: "Mode privé sur paliers payants ; gratuit = images publiques.",
   },
   {
     name: "Ideogram",
@@ -134,6 +160,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["design", "marketer"],
     why: "Excellent pour les images contenant du texte (logos, affiches).",
+    security: 3,
+    secNote: "Images publiques au palier gratuit ; politique claire.",
   },
   {
     name: "Stable Diffusion (local)",
@@ -142,6 +170,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["design", "photo", "video"],
     why: "100 % gratuit, vos images restent sur votre machine.",
+    security: 5,
+    secNote: "Open-source, 100 % local — aucune donnée envoyée nulle part.",
   },
   {
     name: "Recraft",
@@ -150,6 +180,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["design"],
     why: "Génère des illustrations vectorielles éditables.",
+    security: 3,
+    secNote: "Politique standard, vos créations restent les vôtres.",
   },
 
   // ---------- Écriture / Journalisme ----------
@@ -160,6 +192,8 @@ window.TOOLS = [
     flags: ["eu"],
     jobs: ["writer", "translator", "student", "lawyer", "hr", "marketer"],
     why: "Améliore vos textes en français — éditeur allemand, RGPD.",
+    security: 4,
+    secNote: "Éditeur allemand, RGPD natif, textes supprimés après traitement.",
   },
   {
     name: "LanguageTool",
@@ -168,6 +202,8 @@ window.TOOLS = [
     flags: ["eu", "private", "hidden"],
     jobs: ["writer", "student", "translator", "lawyer", "hr"],
     why: "Correcteur grammatical européen, version auto-hébergeable.",
+    security: 5,
+    secNote: "Open-source, auto-hébergeable, éditeur allemand — RGPD strict.",
   },
   {
     name: "Grammarly",
@@ -175,6 +211,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["writer", "student", "marketer"],
     why: "Référence pour l'anglais, palier gratuit suffisant.",
+    security: 3,
+    secNote: "Lit tout ce que vous écrivez ; certifié SOC 2 mais hébergé US.",
   },
 
   // ---------- Traduction ----------
@@ -185,6 +223,8 @@ window.TOOLS = [
     flags: ["eu"],
     jobs: ["translator", "writer", "student", "support", "lawyer"],
     why: "Meilleure qualité française, hébergé en Allemagne.",
+    security: 4,
+    secNote: "Hébergé en Allemagne, textes supprimés après traduction (palier Pro).",
   },
   {
     name: "LibreTranslate",
@@ -193,6 +233,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["translator", "support"],
     why: "Open-source, installable en local — souverain.",
+    security: 5,
+    secNote: "Open-source, installable en local : aucune donnée n'est envoyée.",
   },
 
   // ---------- Recherche / Académique ----------
@@ -203,6 +245,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["researcher", "student"],
     why: "Synthétise des articles scientifiques avec citations.",
+    security: 3,
+    secNote: "Travaille sur articles publics ; vos requêtes restent confidentielles.",
   },
   {
     name: "Consensus",
@@ -211,6 +255,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["researcher", "student", "doctor"],
     why: "Cherche un consensus dans les études publiées sur un sujet.",
+    security: 3,
+    secNote: "Sources publiques uniquement, politique claire.",
   },
   {
     name: "Connected Papers",
@@ -219,6 +265,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["researcher", "student"],
     why: "Visualise un graphe d'articles liés à votre publication.",
+    security: 4,
+    secNote: "Pas de contenu utilisateur sensible — uniquement des références publiques.",
   },
 
   // ---------- Vidéo ----------
@@ -228,6 +276,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["video", "marketer"],
     why: "Sous-titres auto, suppression de fond, gratuit et puissant.",
+    security: 2,
+    secNote: "Édité par ByteDance — collecte large, lisez la politique avant tout usage pro.",
   },
   {
     name: "Descript",
@@ -235,6 +285,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["video", "writer"],
     why: "Édite la vidéo en éditant le texte de la transcription.",
+    security: 3,
+    secNote: "Politique claire, certifié SOC 2 — mais hébergé US.",
   },
   {
     name: "Whisper (local)",
@@ -243,6 +295,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["video", "writer", "researcher", "support"],
     why: "Transcription audio open-source, fonctionne hors-ligne.",
+    security: 5,
+    secNote: "Open-source, 100 % local — vos audios ne sortent jamais de la machine.",
   },
 
   // ---------- Photo ----------
@@ -253,6 +307,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["photo", "design"],
     why: "Agrandit vos photos sans perte, 100 % local et open-source.",
+    security: 5,
+    secNote: "Open-source, totalement hors-ligne, aucune télémétrie.",
   },
   {
     name: "GFPGAN",
@@ -261,6 +317,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["photo"],
     why: "Restaure les vieux portraits — gratuit, en local.",
+    security: 5,
+    secNote: "Open-source, exécutable en local — aucune donnée envoyée.",
   },
   {
     name: "Photopea + IA",
@@ -269,6 +327,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["photo", "design"],
     why: "Photoshop gratuit dans le navigateur, plug-ins IA disponibles.",
+    security: 4,
+    secNote: "Tout traitement se fait dans votre navigateur, pas d'envoi serveur.",
   },
 
   // ---------- Audio / Musique ----------
@@ -278,6 +338,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["music", "video", "marketer"],
     why: "Génère des morceaux complets avec voix — gratuit chaque jour.",
+    security: 3,
+    secNote: "Compositions publiques au palier gratuit ; débats de droits en cours.",
   },
   {
     name: "Udio",
@@ -285,6 +347,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["music"],
     why: "Génération musicale très expressive, palier gratuit.",
+    security: 3,
+    secNote: "Politique standard, créations publiques sans abonnement.",
   },
   {
     name: "AudioCraft (Meta)",
@@ -293,6 +357,8 @@ window.TOOLS = [
     flags: ["private", "offline", "hidden"],
     jobs: ["music", "video"],
     why: "Open-source, à installer localement — aucune limite.",
+    security: 5,
+    secNote: "Open-source, exécutable en local — pleine maîtrise.",
   },
 
   // ---------- Marketing / Sales ----------
@@ -302,6 +368,8 @@ window.TOOLS = [
     price: "freemium",
     jobs: ["marketer", "design", "artisan"],
     why: "Visuels, textes, présentations — tout-en-un grand public.",
+    security: 3,
+    secNote: "Politique claire, mais entraînement opt-out à activer.",
   },
   {
     name: "Brevo (ex-Sendinblue)",
@@ -310,6 +378,8 @@ window.TOOLS = [
     flags: ["eu", "hidden"],
     jobs: ["marketer", "sales", "artisan", "support"],
     why: "Emailing avec IA, éditeur français — RGPD natif.",
+    security: 4,
+    secNote: "Éditeur français, hébergement UE, RGPD natif.",
   },
   {
     name: "Tactiq",
@@ -318,6 +388,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["sales", "pm", "support", "hr"],
     why: "Transcrit et résume vos réunions Meet/Zoom/Teams.",
+    security: 3,
+    secNote: "Transcription côté client, mais résumés via API tierces — vérifiez les paramètres.",
   },
 
   // ---------- Données / Tableurs ----------
@@ -328,6 +400,8 @@ window.TOOLS = [
     flags: ["eu", "hidden"],
     jobs: ["data", "marketer", "finance", "pm"],
     why: "Tableur avec IA intégrée, éditeur portugais.",
+    security: 4,
+    secNote: "Éditeur portugais (UE), conforme RGPD.",
   },
   {
     name: "Julius",
@@ -336,6 +410,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["data", "researcher", "finance"],
     why: "Analyse de données par conversation, génère graphes et code.",
+    security: 3,
+    secNote: "Vos données sont envoyées au service — pas idéal pour données sensibles.",
   },
 
   // ---------- Juridique ----------
@@ -346,6 +422,8 @@ window.TOOLS = [
     flags: ["eu", "hidden"],
     jobs: ["lawyer"],
     why: "Recherche juridique française, IA pour synthétiser jurisprudence.",
+    security: 4,
+    secNote: "Éditeur français, hébergement UE, conforme aux règles du barreau.",
   },
   {
     name: "Lexnow",
@@ -354,6 +432,8 @@ window.TOOLS = [
     flags: ["eu", "hidden"],
     jobs: ["lawyer"],
     why: "Assistant juridique français — vérifiez toujours les sources.",
+    security: 4,
+    secNote: "Acteur français, hébergement UE — vérifiez la politique pour le secret pro.",
   },
 
   // ---------- RH ----------
@@ -364,6 +444,8 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["hr", "student"],
     why: "Optimise CV et lettres de motivation, palier gratuit utile.",
+    security: 3,
+    secNote: "Politique claire, mais vos CV transitent sur leurs serveurs.",
   },
 
   // ---------- Santé (prudence) ----------
@@ -374,5 +456,7 @@ window.TOOLS = [
     flags: ["hidden"],
     jobs: ["doctor"],
     why: "Réservé aux pros de santé — répond avec des sources médicales vérifiées.",
+    security: 4,
+    secNote: "Réservé aux pros vérifiés, sources publiques — ne pas y entrer de données patient.",
   },
 ];
