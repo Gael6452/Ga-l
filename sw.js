@@ -3,16 +3,18 @@
 
 const VERSION = "v1";
 const CACHE   = `trioinclusion-${VERSION}`;
+// Chemins relatifs pour fonctionner aussi sous /ga-l/ (GitHub Pages projet).
+const BASE = new URL("./", self.registration.scope).pathname;
 const SHELL = [
-  "/",
-  "/index.html",
-  "/privacy.html",
-  "/styles.css",
-  "/data.js",
-  "/app.js",
-  "/manifest.webmanifest",
-  "/icons/icon.svg",
-];
+  "",
+  "index.html",
+  "privacy.html",
+  "styles.css",
+  "data.js",
+  "app.js",
+  "manifest.webmanifest",
+  "icons/icon.svg",
+].map(p => BASE + p);
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)));

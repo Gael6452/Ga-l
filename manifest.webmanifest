@@ -2,9 +2,9 @@
   "name": "TrioInclusion app",
   "short_name": "TrioInclusion",
   "description": "Trouvez la meilleure IA gratuite, sûre et peu chère selon votre métier.",
-  "start_url": "/?source=pwa",
-  "scope": "/",
-  "id": "/",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "id": "./",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "orientation": "any",
@@ -23,12 +23,12 @@
   "shortcuts": [
     {
       "name": "Outils pour développeur",
-      "url": "/?job=dev",
+      "url": "./?job=dev",
       "description": "Affiche les IA recommandées pour les développeurs."
     },
     {
       "name": "Outils pour rédacteur",
-      "url": "/?job=writer",
+      "url": "./?job=writer",
       "description": "Affiche les IA recommandées pour les rédacteurs."
     }
   ]
