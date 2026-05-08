@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Bannière "Feature graphic" Google Play : 1024 × 500.
+  Aucun texte essentiel près des bords (Google rogne parfois).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" role="img"
+     aria-labelledby="t d">
+  <title id="t">TrioInclusion — Un métier ? Une IA !</title>
+  <desc id="d">Bannière de présentation : logo cerveau-vers-IA et slogan sur fond dégradé.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#3a1f8c"/>
+      <stop offset="50%" stop-color="#5a3eff"/>
+      <stop offset="100%" stop-color="#0d8478"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1024" height="500" fill="url(#bg)"/>
+
+  <!-- Pictogramme à gauche -->
+  <g transform="translate(80 130)">
+    <g fill="none" stroke="url(#line)" stroke-width="9"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M120 20
+               C 65 20, 40 60, 40 110
+               C 40 165, 65 210, 120 210
+               L 135 210 L 135 20 Z"/>
+      <path d="M70 80 C 90 85, 102 92, 105 110"/>
+      <path d="M62 145 C 85 138, 105 138, 118 158"/>
+      <path d="M110 30 L 110 195"/>
+      <line x1="155" y1="115" x2="225" y2="115"/>
+      <polyline points="208,95 225,115 208,135"/>
+      <rect x="240" y="55" width="120" height="120" rx="20" ry="20"/>
+    </g>
+    <text x="300" y="135" text-anchor="middle"
+          font-family="-apple-system, Segoe UI, Inter, Helvetica, Arial, sans-serif"
+          font-size="58" font-weight="800" fill="#ffffff">IA</text>
+  </g>
+
+  <!-- Texte à droite -->
+  <g font-family="-apple-system, Segoe UI, Inter, Helvetica, Arial, sans-serif" fill="#ffffff">
+    <text x="540" y="190" font-size="56" font-weight="800" letter-spacing="-1">
+      TrioInclusion
+    </text>
+    <text x="540" y="270" font-size="44" font-weight="700" font-style="italic"
+          fill="#a8f0e2">
+      « Un métier ? Une IA ! »
+    </text>
+    <text x="540" y="335" font-size="22" font-weight="500" fill="#e7ecf3">
+      La meilleure IA pour votre métier —
+    </text>
+    <text x="540" y="365" font-size="22" font-weight="500" fill="#e7ecf3">
+      gratuite, sûre, et accessible.
+    </text>
+
+    <!-- Pastilles de valeurs -->
+    <g font-size="18" font-weight="700">
+      <g transform="translate(540 405)">
+        <rect x="0" y="0" width="160" height="40" rx="20" fill="#ffffff" fill-opacity="0.18" stroke="#ffffff" stroke-opacity="0.5"/>
+        <text x="80" y="26" text-anchor="middle">Sans tracking</text>
+      </g>
+      <g transform="translate(715 405)">
+        <rect x="0" y="0" width="115" height="40" rx="20" fill="#ffffff" fill-opacity="0.18" stroke="#ffffff" stroke-opacity="0.5"/>
+        <text x="58" y="26" text-anchor="middle">Hors-ligne</text>
+      </g>
+      <g transform="translate(845 405)">
+        <rect x="0" y="0" width="125" height="40" rx="20" fill="#ffffff" fill-opacity="0.18" stroke="#ffffff" stroke-opacity="0.5"/>
+        <text x="63" y="26" text-anchor="middle">WCAG 2.1 AA</text>
+      </g>
+    </g>
+  </g>
+</svg>

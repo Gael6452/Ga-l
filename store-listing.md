@@ -15,23 +15,25 @@ TrioInclusion
 
 ## Description courte (max 80 car.)
 
-**Option A — orientée bénéfice (recommandée) :**
+**À utiliser :**
 ```
 Trouvez la meilleure IA gratuite, sûre et adaptée à votre métier.
 ```
 *(64 car.)*
 
-**Option B — orientée valeurs :**
+<details>
+<summary>Variantes alternatives, au cas où</summary>
+
 ```
 La bonne IA pour votre métier. Gratuite, respectueuse, accessible.
 ```
 *(67 car.)*
 
-**Option C — courte :**
 ```
 Quel métier ? Quelle IA ? La réponse en un clic, sans tracking.
 ```
 *(63 car.)*
+</details>
 
 ---
 
@@ -184,14 +186,8 @@ Fichier : `icons/icon-1024.png` (généré par `tools/build-icons.sh`).
 
 ## Bannière fonctionnalité (1024 × 500)
 
-À créer. Suggestion :
-- Fond dégradé violet → cyan
-- Logo TrioInclusion à gauche
-- Texte centré : « Un métier ? Une IA ! »
-- Petite mention en bas : « Gratuit · Sans tracking · Accessible »
-
-L'outil intégré dans Play Console permet de la générer rapidement à
-partir du logo, ou utilisez Canva / Figma.
+Fichier prêt : `icons/feature-graphic.png` (et la source vectorielle
+`icons/feature-graphic.svg` si vous voulez la modifier).
 
 ---
 
