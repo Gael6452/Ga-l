@@ -91,7 +91,34 @@ curl -s https://votre-domaine/.well-known/assetlinks.json | jq .
 7. **Production → Créer une nouvelle version** → uploadez le `.aab`.
 8. Soumettre pour examen. Délai : quelques heures à quelques jours.
 
-## 6. Après la publication
+## 6. Accessibilité — déclaration Play Console
+
+L'app respecte WCAG 2.1 AA (cf. section « Accessibilité » du site). À
+compléter dans la fiche Play :
+
+- **Description complète** : ajoutez une ligne « Accessibilité : conforme
+  WCAG 2.1 AA. Compatible TalkBack, navigation au clavier et Bluetooth,
+  contraste élevé, pas de verrouillage d'orientation. »
+- **Tags** : cochez « Accessibilité » dans les catégories secondaires.
+- **Sécurité des données** : déclarez « aucune donnée collectée », « aucun
+  partage », « pas de tracking ».
+- **Politique de confidentialité** : URL publique obligatoire, même si
+  l'app ne collecte rien (mentionnez-le explicitement).
+- **Captures d'écran** : ajoutez la **description textuelle** dans la
+  description longue (les captures elles-mêmes n'ont pas d'alt sur Play).
+- **Vidéo de démonstration** : si vous en mettez une, fournissez des
+  sous-titres (les sourds et malentendants en bénéficient).
+- **Test TalkBack** : avant publication, activez TalkBack sur le téléphone
+  test et vérifiez que tous les boutons sont annoncés correctement.
+- **Test Switch Access / clavier Bluetooth** : vérifiez la navigation
+  séquentielle au focus.
+
+La TWA hérite **automatiquement** de l'accessibilité du site web : le
+moteur de rendu Chrome dans Android expose le DOM à TalkBack. Tout ce qui
+fonctionne avec NVDA/VoiceOver dans le navigateur fonctionne avec TalkBack
+dans l'app.
+
+## 7. Après la publication
 
 À chaque mise à jour :
 
