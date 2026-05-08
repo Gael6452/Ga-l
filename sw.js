@@ -6,6 +6,7 @@ const CACHE   = `trioinclusion-${VERSION}`;
 const SHELL = [
   "/",
   "/index.html",
+  "/privacy.html",
   "/styles.css",
   "/data.js",
   "/app.js",
