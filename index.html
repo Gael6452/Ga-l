@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FindMyAI — Trouvez la meilleure IA pour votre métier</title>
+    <meta name="description" content="Trouvez la meilleure IA gratuite, sûre et peu chère selon votre métier. Recommandations indépendantes, axées vie privée." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <a href="#" class="brand">
+          <span class="logo">◆</span>
+          <span>FindMyAI</span>
+        </a>
+        <nav>
+          <a href="#tools">Outils</a>
+          <a href="#about">À propos</a>
+        </nav>
+      </div>
+      <div class="container hero-body">
+        <h1>Trouvez la meilleure IA <span class="accent">pour votre métier</span></h1>
+        <p class="lede">
+          Des recommandations indépendantes : IA gratuites ou abordables, respectueuses
+          de votre vie privée, et adaptées à ce que vous faites au quotidien.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="finder card" aria-labelledby="finder-title">
+        <h2 id="finder-title">1. Votre métier</h2>
+        <p class="muted">Choisissez votre activité ou tapez un mot-clé.</p>
+
+        <div class="search-row">
+          <input
+            type="search"
+            id="search"
+            placeholder="ex. développeur, prof, designer, juriste…"
+            autocomplete="off"
+            aria-label="Rechercher un métier"
+          />
+        </div>
+
+        <div id="jobs" class="chips" role="listbox" aria-label="Liste des métiers"></div>
+
+        <h2 class="filters-title">2. Vos critères</h2>
+        <div class="filters">
+          <label class="toggle">
+            <input type="checkbox" id="f-free" checked />
+            <span>Gratuit ou freemium</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="f-private" />
+            <span>Données privées / open-source</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="f-eu" />
+            <span>Hébergé en Europe (RGPD)</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="f-offline" />
+            <span>Fonctionne hors-ligne</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="f-hidden" />
+            <span>Pépites peu connues</span>
+          </label>
+        </div>
+      </section>
+
+      <section id="tools" class="results" aria-live="polite">
+        <div class="results-head">
+          <h2 id="results-title">Choisissez un métier ci-dessus</h2>
+          <span id="count" class="muted"></span>
+        </div>
+        <div id="cards" class="cards"></div>
+        <p id="empty" class="empty hidden">
+          Aucun outil ne correspond à ces critères. Essayez d'en décocher un.
+        </p>
+      </section>
+
+      <section id="about" class="card about">
+        <h2>Comment on choisit ?</h2>
+        <ul class="check">
+          <li><strong>Sûr</strong> — pas de revente de données, politique claire, ou code open-source vérifiable.</li>
+          <li><strong>Peu cher</strong> — gratuit, freemium généreux, ou prix sous 10 €/mois.</li>
+          <li><strong>Utile</strong> — testé pour le métier ciblé, pas juste un chatbot générique.</li>
+          <li><strong>Pépites</strong> — on inclut volontairement des alternatives moins connues que ChatGPT.</li>
+        </ul>
+        <p class="muted small">
+          ⚠️ Pour la santé, le droit ou la finance, l'IA aide mais ne remplace
+          jamais un professionnel. Vérifiez toujours les sources.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <span>FindMyAI · fait avec soin · pas d'affiliation, pas de tracking</span>
+      </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
