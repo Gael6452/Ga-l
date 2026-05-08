@@ -6,6 +6,17 @@
     <meta name="color-scheme" content="dark light" />
     <title>TrioInclusion app — Trouvez la meilleure IA pour votre métier</title>
     <meta name="description" content="Trouvez la meilleure IA gratuite, sûre et peu chère selon votre métier. Recommandations indépendantes, axées vie privée et accessibilité." />
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="TrioInclusion" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -208,5 +219,12 @@
 
     <script src="data.js"></script>
     <script src="app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

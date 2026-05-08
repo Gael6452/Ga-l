@@ -1,0 +1,35 @@
+{
+  "name": "TrioInclusion app",
+  "short_name": "TrioInclusion",
+  "description": "Trouvez la meilleure IA gratuite, sûre et peu chère selon votre métier.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#0e1116",
+  "theme_color": "#0e1116",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["productivity", "education", "utilities"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Outils pour développeur",
+      "url": "/?job=dev",
+      "description": "Affiche les IA recommandées pour les développeurs."
+    },
+    {
+      "name": "Outils pour rédacteur",
+      "url": "/?job=writer",
+      "description": "Affiche les IA recommandées pour les rédacteurs."
+    }
+  ]
+}

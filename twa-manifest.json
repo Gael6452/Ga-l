@@ -1,0 +1,35 @@
+{
+  "packageId": "app.trioinclusion.twa",
+  "host": "REMPLACER-PAR-VOTRE-DOMAINE.exemple.com",
+  "name": "TrioInclusion",
+  "launcherName": "TrioInclusion",
+  "display": "standalone",
+  "themeColor": "#0e1116",
+  "navigationColor": "#0e1116",
+  "navigationColorDark": "#0e1116",
+  "navigationDividerColor": "#0e1116",
+  "navigationDividerColorDark": "#0e1116",
+  "backgroundColor": "#0e1116",
+  "enableNotifications": false,
+  "startUrl": "/",
+  "iconUrl": "https://REMPLACER-PAR-VOTRE-DOMAINE.exemple.com/icons/icon-512.png",
+  "maskableIconUrl": "https://REMPLACER-PAR-VOTRE-DOMAINE.exemple.com/icons/icon-maskable-512.png",
+  "appVersionName": "1.0.0",
+  "appVersion": 1,
+  "shortcuts": [],
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "android"
+  },
+  "splashScreenFadeOutDuration": 300,
+  "fallbackType": "customtabs",
+  "features": {
+    "playBilling": { "enabled": false }
+  },
+  "alphaDependencies": { "enabled": false },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "orientation": "default",
+  "fingerprints": [],
+  "generatorApp": "bubblewrap-cli"
+}
