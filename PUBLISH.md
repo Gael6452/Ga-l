@@ -1,137 +1,152 @@
 # Publier TrioInclusion sur le Play Store
 
-L'app est un site web. Pour la mettre sur le Play Store, on l'empaquette
-en **TWA** (Trusted Web Activity) avec **Bubblewrap** : Android ouvre le
-site en plein écran, sans barre d'URL, et c'est exactement la même app.
+L'app est packagée avec **Capacitor** : tout le code est embarqué dans le
+`.aab`, **pas besoin d'héberger un site**. L'utilisateur installe l'app, ça
+tourne 100 % en local.
 
-## 1. Héberger le site
+## Pré-requis
 
-Choisissez un hébergeur statique gratuit :
+À installer sur ta machine :
 
-- **Netlify** : `netlify deploy --prod` après `npm i -g netlify-cli`
-- **Vercel** : `vercel --prod` après `npm i -g vercel`
-- **GitHub Pages** : push sur `main`, activer Pages dans les réglages
+- **Node.js ≥ 18** : <https://nodejs.org>
+- **Java JDK 17** : `apt install openjdk-17-jdk` ou Adoptium / Temurin
+- **Android Studio** (le plus simple, fournit le SDK + l'émulateur) :
+  <https://developer.android.com/studio>
 
-Vérifiez ensuite que :
-
-- Le site répond en **HTTPS** (Bubblewrap l'exige).
-- `https://votre-domaine/manifest.webmanifest` se charge.
-- Lighthouse rapporte « PWA installable » (DevTools → Lighthouse).
-
-## 2. Générer les icônes PNG
-
-Depuis la racine du projet :
-
+Vérifie :
 ```bash
-./tools/build-icons.sh
+node -v
+java -version
+echo $ANDROID_HOME    # doit pointer sur ~/Android/Sdk
 ```
 
-Cela crée `icon-192.png`, `icon-512.png`, leurs variantes maskable, et un
-`icon-1024.png` pour la fiche Play. Le script utilise le premier outil
-disponible parmi `rsvg-convert`, `imagemagick`, `inkscape` ou `npx sharp-cli`.
-
-## 3. Préparer Bubblewrap
+## 1. Installer les dépendances
 
 ```bash
-npm i -g @bubblewrap/cli
+npm install
 ```
 
-Éditez `twa-manifest.json` :
+Ça récupère `@capacitor/core`, `@capacitor/cli` et `@capacitor/android`.
 
-- `host` → votre domaine (sans `https://`).
-- `iconUrl` / `maskableIconUrl` → URLs absolues vers les PNG hébergés.
-- `packageId` → identifiant unique inversé (ex. `app.trioinclusion.twa`).
-
-Puis :
+## 2. Construire le bundle web
 
 ```bash
-bubblewrap init --manifest=https://votre-domaine/manifest.webmanifest
-bubblewrap build
+npm run build
 ```
 
-À la fin, vous obtenez :
+Ça crée `www/` à partir des fichiers du repo (rien n'est minifié, c'est
+de l'app pure HTML/CSS/JS).
 
-- `app-release-bundle.aab` → à uploader sur le Play Store
-- `android.keystore` → **gardez-le précieusement**, chiffré, hors du dépôt
-- Le SHA-256 du certificat est affiché dans le terminal
-
-## 4. Lier le site et l'app (Digital Asset Links)
-
-Sans cette étape, l'app affichera la barre d'URL. Édutez
-`.well-known/assetlinks.json` :
-
-- `package_name` → la valeur de `packageId`
-- `sha256_cert_fingerprints` → le SHA-256 affiché par Bubblewrap
-
-Ce fichier doit être servi à l'URL exacte :
-
-    https://votre-domaine/.well-known/assetlinks.json
-
-Vérifiez :
+## 3. Ajouter la plateforme Android (une seule fois)
 
 ```bash
-curl -s https://votre-domaine/.well-known/assetlinks.json | jq .
+npm run cap:add
 ```
 
-## 5. Compte Play Console
+Capacitor crée le dossier `android/` (projet Gradle complet). Ce dossier
+n'est pas commité — il se régénère à la demande.
 
-1. Inscrivez-vous : https://play.google.com/console (25 $ une fois,
-   vérification d'identité, **votre vrai nom + pièce d'identité**).
-2. Créez l'application (français, gratuit, type « App »).
-3. **Politique de confidentialité** : hébergez une page publique (le repo
-   peut servir `privacy.html` — j'en fournis un modèle si besoin).
-4. **Sécurité des données** : déclarez « Aucune donnée collectée » si
-   c'est le cas (TrioInclusion ne traque rien).
-5. **Classification de contenu** : remplir le questionnaire IARC.
-6. **Fiche du Store** :
-   - Icône : `icon-1024.png`
-   - Bannière : 1024 × 500 (à créer — outil intégré Play Console possible)
-   - Au moins 2 captures d'écran de l'app sur téléphone (1080 × 1920 conseillé)
-   - Description courte (80 car.) et complète (4000 car.)
-7. **Production → Créer une nouvelle version** → uploadez le `.aab`.
-8. Soumettre pour examen. Délai : quelques heures à quelques jours.
-
-## 6. Accessibilité — déclaration Play Console
-
-L'app respecte WCAG 2.1 AA (cf. section « Accessibilité » du site). À
-compléter dans la fiche Play :
-
-- **Description complète** : ajoutez une ligne « Accessibilité : conforme
-  WCAG 2.1 AA. Compatible TalkBack, navigation au clavier et Bluetooth,
-  contraste élevé, pas de verrouillage d'orientation. »
-- **Tags** : cochez « Accessibilité » dans les catégories secondaires.
-- **Sécurité des données** : déclarez « aucune donnée collectée », « aucun
-  partage », « pas de tracking ».
-- **Politique de confidentialité** : URL publique obligatoire, même si
-  l'app ne collecte rien (mentionnez-le explicitement).
-- **Captures d'écran** : ajoutez la **description textuelle** dans la
-  description longue (les captures elles-mêmes n'ont pas d'alt sur Play).
-- **Vidéo de démonstration** : si vous en mettez une, fournissez des
-  sous-titres (les sourds et malentendants en bénéficient).
-- **Test TalkBack** : avant publication, activez TalkBack sur le téléphone
-  test et vérifiez que tous les boutons sont annoncés correctement.
-- **Test Switch Access / clavier Bluetooth** : vérifiez la navigation
-  séquentielle au focus.
-
-La TWA hérite **automatiquement** de l'accessibilité du site web : le
-moteur de rendu Chrome dans Android expose le DOM à TalkBack. Tout ce qui
-fonctionne avec NVDA/VoiceOver dans le navigateur fonctionne avec TalkBack
-dans l'app.
-
-## 7. Après la publication
-
-À chaque mise à jour :
+## 4. Ouvrir dans Android Studio
 
 ```bash
-bubblewrap update      # met à jour la version Bubblewrap si besoin
-bubblewrap build       # regénère le .aab (incrémente appVersion)
+npm run cap:open
 ```
 
-Et uploadez le nouveau `.aab` sur la même piste de production.
+Android Studio s'ouvre sur le projet généré. À l'intérieur :
 
-## Notes
+1. Vérifier `android/app/build.gradle` :
+   - `applicationId "app.trioinclusion.android"`
+   - `versionCode 1`, `versionName "1.0.0"`
+2. **Build → Generate Signed Bundle / APK**
+3. Choisir **Android App Bundle** (.aab — exigé par le Play Store).
+4. Créer une nouvelle clé de signature (à conserver précieusement, hors
+   du dépôt). Mots de passe à mémoriser.
+5. Build variant : **release**.
+6. Le `.aab` sort dans `android/app/release/app-release.aab`.
 
-- Le Play Store n'autorise plus les APK depuis 2021 : seul `.aab`.
-- Si l'app utilise plus tard des paiements in-app, le **Play Billing** est
-  obligatoire (passer par Bubblewrap `playBilling.enabled = true`).
-- Pour iOS / l'App Store, c'est une autre démarche (PWA simple ou Capacitor).
+## 5. Tester sur un appareil réel
+
+Avant de soumettre :
+
+```bash
+adb install android/app/release/app-release.aab   # ou drag-drop dans le téléphone
+```
+
+Vérifie :
+- L'icône TrioInclusion apparaît dans le launcher
+- L'app s'ouvre sans connexion Internet (mode avion)
+- Tous les filtres fonctionnent
+- **TalkBack** : Réglages → Accessibilité → TalkBack. Parcours toute l'app
+  au doigt, vérifie que les chips sont annoncées « bouton, sélectionné /
+  non sélectionné ».
+- Rotation de l'écran (le manifeste autorise toutes les orientations).
+
+## 6. Compte Play Console
+
+Seule étape que je ne peux pas automatiser :
+
+1. <https://play.google.com/console>
+2. **25 $** une fois (carte bancaire).
+3. Vérification d'identité avec pièce d'identité (24-48 h).
+4. Créer l'application : nom **TrioInclusion**, langue par défaut
+   **français**, gratuit, type « App ».
+
+## 7. Remplir la fiche
+
+Tout est prêt dans `store-listing.md`. À copier-coller dans :
+
+- **Description courte / longue** → onglet *Présence sur le Store / Fiche du Store*
+- **Icône** → `icons/icon-1024.png` (slot « Icône d'application »)
+- **Bannière** → `icons/feature-graphic.png` (slot « Image de présentation »)
+- **Captures d'écran** → 2 minimum, 1080 × 1920 conseillé. Prends-les sur
+  ton téléphone via *Réglages → Captures d'écran* après installation.
+- **Politique de confidentialité** → URL publique. Si tu n'héberges pas
+  encore le site trioinclusion.org, GitHub Pages gratuit suffit pour
+  héberger uniquement `privacy.html`.
+- **Sécurité des données** → réponses dans `store-listing.md` (tout en
+  « Non »).
+- **Classification de contenu** → questionnaire IARC, réponses dans
+  `store-listing.md` (PEGI 3 attendu).
+
+## 8. Soumettre
+
+1. **Production → Créer une nouvelle version**
+2. Upload de `app-release.aab`
+3. Notes de version (ex. « Première version. »)
+4. **Examiner et déployer**
+5. Délai d'examen : **quelques heures à 7 jours** pour une première publication.
+
+## Mises à jour
+
+Quand tu modifies l'app :
+
+```bash
+# 1. Bump versions dans android/app/build.gradle
+#    versionCode 2
+#    versionName "1.0.1"
+
+# 2. Resync et rebuild
+npm run cap:sync
+npm run cap:open
+# → Build → Generate Signed Bundle (avec la même clé que la 1re fois)
+
+# 3. Upload le nouveau .aab dans Play Console → Production → Nouvelle version
+```
+
+## Annexe — sauvegarder la clé
+
+⚠️ **Si tu perds le keystore, tu ne pourras plus jamais publier de mise
+à jour de l'app.** Google ne peut pas le régénérer.
+
+Sauvegarde au moins 2 copies :
+- Un mot de passe manager (Bitwarden, 1Password)
+- Un disque externe chiffré
+
+Active aussi **Play App Signing** (option Google) au premier upload :
+Google garde une copie de ta clé chez lui en plus.
+
+## Annexe — alternative TWA (si tu changes d'avis)
+
+Tout le travail TWA reste dans le repo (`twa-manifest.json`,
+`.well-known/assetlinks.json`). Pour basculer dessus, voir l'historique
+git ou demander.

@@ -1,0 +1,25 @@
+# Dépendances Node
+node_modules/
+
+# Sortie de build (régénérée par `npm run build`)
+www/
+
+# Projet Android généré par Capacitor
+android/
+ios/
+
+# Artefacts de signature — JAMAIS commiter
+*.keystore
+*.jks
+key.properties
+android.keystore
+
+# Bubblewrap (alternative legacy)
+twa-build/
+*.aab
+*.apk
+
+# Système
+.DS_Store
+Thumbs.db
+*.log
